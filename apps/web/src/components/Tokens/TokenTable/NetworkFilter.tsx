@@ -4,7 +4,6 @@ import { DropdownSelector, InternalMenuItem } from 'components/DropdownSelector'
 import { ChainLogo } from 'components/Logo/ChainLogo'
 import { AllNetworksIcon } from 'components/Tokens/TokenTable/icons'
 import {
-  BACKEND_NOT_YET_SUPPORTED_CHAIN_IDS,
   BACKEND_SUPPORTED_CHAINS,
   InterfaceGqlChain,
   useChainFromUrlParam,
@@ -51,6 +50,8 @@ const StyledDropdown = {
   },
 } satisfies FlexProps
 
+const filteredChains = BACKEND_SUPPORTED_CHAINS.filter((chain) => chain === 'POLYGON')
+
 export default function TableNetworkFilter() {
   const [isMenuOpen, toggleMenu] = useState(false)
   const isSupportedChainCallback = useIsSupportedChainIdCallback()
@@ -79,10 +80,7 @@ export default function TableNetworkFilter() {
           }
           internalMenuItems={
             <ScrollView px="$spacing8">
-              {isMultichainExploreEnabled && (
-                <TableNetworkItem display="All networks" toggleMenu={toggleMenu} tab={tab} />
-              )}
-              {BACKEND_SUPPORTED_CHAINS.map((network) => {
+              {filteredChains.map((network) => {
                 const chainId = supportedChainIdFromGQLChain(network)
                 const isSupportedChain = isSupportedChainCallback(chainId)
                 const chainInfo = isSupportedChain ? UNIVERSE_CHAIN_INFO[chainId] : undefined
@@ -93,20 +91,6 @@ export default function TableNetworkFilter() {
                     chainInfo={chainInfo}
                     toggleMenu={toggleMenu}
                     tab={tab}
-                  />
-                ) : null
-              })}
-              {BACKEND_NOT_YET_SUPPORTED_CHAIN_IDS.map((network) => {
-                const isSupportedChain = isSupportedChainCallback(network)
-                const chainInfo = isSupportedChain ? UNIVERSE_CHAIN_INFO[network] : undefined
-                return chainInfo ? (
-                  <TableNetworkItem
-                    key={network}
-                    display={chainInfo.backendChain.chain}
-                    chainInfo={chainInfo}
-                    toggleMenu={toggleMenu}
-                    tab={tab}
-                    unsupported
                   />
                 ) : null
               })}
