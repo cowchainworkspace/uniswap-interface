@@ -46,12 +46,12 @@ const Pages: Array<Page> = [
     component: TopTokensTable,
     loggingElementName: InterfaceElementName.EXPLORE_TOKENS_TAB,
   },
-  {
-    title: <Trans i18nKey="common.pools" />,
-    key: ExploreTab.Pools,
-    component: TopPoolTable,
-    loggingElementName: InterfaceElementName.EXPLORE_POOLS_TAB,
-  },
+  // {
+  //   title: <Trans i18nKey="common.pools" />,
+  //   key: ExploreTab.Pools,
+  //   component: TopPoolTable,
+  //   loggingElementName: InterfaceElementName.EXPLORE_POOLS_TAB,
+  // },
   {
     title: <Trans i18nKey="common.transactions" />,
     key: ExploreTab.Transactions,
