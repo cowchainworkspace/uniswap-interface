@@ -210,9 +210,9 @@ export default function Pool() {
             >
               <Flex row alignItems="center" gap="$spacing8" width="min-content">
                 <Text variant="heading2">{t('pool.positions')}</Text>
-                <div>
+                {/* <div>
                   <PoolVersionMenu protocolVersion={ProtocolVersion.V3} />
-                </div>
+                </div> */}
               </Flex>
               <Flex row gap="8px" $md={{ width: '100%' }}>
                 {networkSupportsV2 && (
