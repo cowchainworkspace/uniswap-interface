@@ -172,7 +172,19 @@ export default function Pool() {
     [closedPositions, openPositions, userHideClosedPositions],
   )
 
-  const filteredPositions = useFilterPossiblyMaliciousPositions(userSelectedPositionSet)
+  const usdtAddress = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
+  const usdcAddress = '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359'
+
+  const fetchedPositions = useFilterPossiblyMaliciousPositions(userSelectedPositionSet)
+
+  const filteredPositions = fetchedPositions!.filter((position) => {
+    return (
+      (position.token0 === usdtAddress || position.token0 === usdcAddress) &&
+      (position.token1 === usdtAddress || position.token1 === usdtAddress)
+    )
+  })
+
+  console.log("filtered: ",filteredPositions)
 
   if (!isSupportedChain) {
     return <WrongNetworkCard />
