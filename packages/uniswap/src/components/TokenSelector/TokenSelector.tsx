@@ -1,6 +1,7 @@
 import { InterfaceEventName, InterfaceModalName } from '@uniswap/analytics-events'
 import { Currency } from '@uniswap/sdk-core'
 import { hasStringAsync } from 'expo-clipboard'
+import { chain } from 'lodash'
 import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Flex, Text, TouchableArea, isWeb, useMedia, useScrollbarStyles, useSporeColors } from 'ui/src'
@@ -94,6 +95,10 @@ export function TokenSelectorContent({
   const [hasClipboardString, setHasClipboardString] = useState(false)
 
   const { chains: enabledChains, isTestnetModeEnabled } = useEnabledChains()
+
+  const filteredChains = chainIds?.filter((chainId) => chainId === 137)
+
+  console.log('chains', filteredChains)
 
   // Check if user clipboard has any text to show paste button
   useEffect(() => {
@@ -256,6 +261,9 @@ export function TokenSelectorContent({
     onSendEmptyActionPress,
   ])
 
+    console.log('wefwe')
+
+
   return (
     <Trace
       logImpression={isInterface} // TODO(WEB-5161): Deduplicate shared vs interface-only trace event
@@ -279,16 +287,16 @@ export function TokenSelectorContent({
               endAdornment={
                 <Flex row alignItems="center">
                   {hasClipboardString && <PasteButton inline onPress={handlePaste} />}
-                  <NetworkFilter
+                  {/* <NetworkFilter
                     includeAllNetworks={!isTestnetModeEnabled}
-                    chainIds={chainIds || enabledChains}
+                    chainIds={chainIds || filteredChains!}
                     selectedChain={chainFilter}
                     styles={isExtension ? { dropdownZIndex: zIndices.overlay } : undefined}
                     onPressChain={(newChainId) => {
                       onChangeChainFilter(newChainId)
                       onSelectChain?.(newChainId)
                     }}
-                  />
+                  /> */}
                 </Flex>
               }
               placeholder={t('tokens.selector.search.placeholder')}
