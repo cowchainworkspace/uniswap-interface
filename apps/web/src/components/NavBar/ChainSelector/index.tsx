@@ -23,6 +23,10 @@ export const ChainSelector = ({ hideArrow }: ChainSelectorProps) => {
 
   const { chains } = useEnabledChains()
 
+  const filtertedChains = chains.filter((chainId) => chainId == 137)
+
+  console.log('chains', filtertedChains)
+
   const onSelectChain = useCallback(
     async (targetChainId: UniverseChainId | null) => {
       if (multichainUXEnabled || !targetChainId) {
@@ -51,7 +55,7 @@ export const ChainSelector = ({ hideArrow }: ChainSelectorProps) => {
         onPressChain={onSelectChain}
         showUnsupportedConnectedChainWarning={isUnsupportedConnectedChain}
         hideArrow={hideArrow}
-        chainIds={chains}
+        chainIds={filtertedChains}
         styles={{
           sticky: true,
         }}
