@@ -1,5 +1,4 @@
 import { InterfaceElementName, InterfacePageName, SharedEventName } from '@uniswap/analytics-events'
-import { TopPoolTable } from 'components/Pools/PoolTable/PoolTable'
 import { TopTokensTable } from 'components/Tokens/TokenTable'
 import TableNetworkFilter from 'components/Tokens/TokenTable/NetworkFilter'
 import SearchBar from 'components/Tokens/TokenTable/SearchBar'

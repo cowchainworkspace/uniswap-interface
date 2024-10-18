@@ -208,7 +208,7 @@ function _TokenSelectorSwapOutputList({
 
   let filteredSections: any
 
-  if (sections) {
+  if (sections && sections.length) {
     filteredSections = sections.filter((section) => section.sectionKey == 'popularTokens')
 
     // filteredSections

@@ -142,11 +142,10 @@ function _TokenSelectorSwapInputList({
 
   let filteredSections: any;
 
-  if(sections) {
+  if (sections && sections.length) {
     filteredSections = sections.filter((section) => section.sectionKey == "popularTokens")
 
     filteredSections;
-
     filteredTokens = sections[0].data.filter((section) => section.currencyInfo.currency.symbol === 'USDT' || section.currencyInfo.currency.symbol === 'USDC')
 
     filteredSections[0].data = filteredTokens

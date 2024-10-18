@@ -66,7 +66,7 @@ export function ExploreSections({ listRef }: ExploreSectionsProps): JSX.Element 
   } = useExploreTokensTabQuery({
     variables: {
       topTokensOrderBy: serverOrderBy,
-      chain: Chain.Ethereum,
+      chain: Chain.Polygon,
       pageSize: 100,
     },
     returnPartialData: true,
