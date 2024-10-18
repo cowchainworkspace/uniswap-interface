@@ -98,8 +98,6 @@ export function TokenSelectorContent({
 
   const filteredChains = chainIds?.filter((chainId) => chainId === 137)
 
-  console.log('chains', filteredChains)
-
   // Check if user clipboard has any text to show paste button
   useEffect(() => {
     async function checkClipboard(): Promise<void> {
@@ -185,44 +183,45 @@ export function TokenSelectorContent({
   const shouldAutoFocusSearch = isWeb && !media.sm
 
   const tokenSelector = useMemo(() => {
-    if (searchInFocus && !searchFilter && !isTestnetModeEnabled) {
-      return (
-        <TokenSelectorEmptySearchList
-          chainFilter={chainFilter}
-          isKeyboardOpen={isKeyboardOpen}
-          onSelectCurrency={onSelectCurrencyCallback}
-        />
-      )
-    }
+    console.log("here")
+    // if (searchInFocus && !searchFilter && !isTestnetModeEnabled) {
+    //   return (
+    //     <TokenSelectorEmptySearchList
+    //       chainFilter={chainFilter}
+    //       isKeyboardOpen={isKeyboardOpen}
+    //       onSelectCurrency={onSelectCurrencyCallback}
+    //     />
+    //   )
+    // }
 
-    if (searchFilter) {
-      return (
-        <TokenSelectorSearchResultsList
-          activeAccountAddress={activeAccountAddress}
-          chainFilter={chainFilter}
-          debouncedParsedSearchFilter={debouncedParsedSearchFilter}
-          debouncedSearchFilter={debouncedSearchFilter}
-          isBalancesOnlySearch={variation === TokenSelectorVariation.BalancesOnly}
-          isKeyboardOpen={isKeyboardOpen}
-          parsedChainFilter={parsedChainFilter}
-          searchFilter={searchFilter}
-          input={input}
-          onSelectCurrency={onSelectCurrencyCallback}
-        />
-      )
-    }
+    // if (searchFilter) {
+    //   return (
+    //     <TokenSelectorSearchResultsList
+    //       activeAccountAddress={activeAccountAddress}
+    //       chainFilter={chainFilter}
+    //       debouncedParsedSearchFilter={debouncedParsedSearchFilter}
+    //       debouncedSearchFilter={debouncedSearchFilter}
+    //       isBalancesOnlySearch={variation === TokenSelectorVariation.BalancesOnly}
+    //       isKeyboardOpen={isKeyboardOpen}
+    //       parsedChainFilter={parsedChainFilter}
+    //       searchFilter={searchFilter}
+    //       input={input}
+    //       onSelectCurrency={onSelectCurrencyCallback}
+    //     />
+    //   )
+    // }
 
     switch (variation) {
-      case TokenSelectorVariation.BalancesOnly:
-        return (
-          <TokenSelectorSendList
-            activeAccountAddress={activeAccountAddress}
-            chainFilter={chainFilter}
-            isKeyboardOpen={isKeyboardOpen}
-            onEmptyActionPress={onSendEmptyActionPress}
-            onSelectCurrency={onSelectCurrencyCallback}
-          />
-        )
+      // case TokenSelectorVariation.BalancesOnly:
+      //   return (
+      //     <TokenSelectorSendList
+      //       activeAccountAddress={activeAccountAddress}
+      //       chainFilter={chainFilter}
+      //       isKeyboardOpen={isKeyboardOpen}
+      //       onEmptyActionPress={onSendEmptyActionPress}
+      //       onSelectCurrency={onSelectCurrencyCallback}
+      //     />
+      //   )
       case TokenSelectorVariation.SwapInput:
         return (
           <TokenSelectorSwapInputList
@@ -261,9 +260,6 @@ export function TokenSelectorContent({
     onSendEmptyActionPress,
   ])
 
-    console.log('wefwe')
-
-
   return (
     <Trace
       logImpression={isInterface} // TODO(WEB-5161): Deduplicate shared vs interface-only trace event
@@ -280,34 +276,6 @@ export function TokenSelectorContent({
               </TouchableArea>
             </Flex>
           )}
-          <Flex px="$spacing16" py="$spacing4">
-            <SearchTextInput
-              autoFocus={shouldAutoFocusSearch}
-              backgroundColor="$surface2"
-              endAdornment={
-                <Flex row alignItems="center">
-                  {hasClipboardString && <PasteButton inline onPress={handlePaste} />}
-                  {/* <NetworkFilter
-                    includeAllNetworks={!isTestnetModeEnabled}
-                    chainIds={chainIds || filteredChains!}
-                    selectedChain={chainFilter}
-                    styles={isExtension ? { dropdownZIndex: zIndices.overlay } : undefined}
-                    onPressChain={(newChainId) => {
-                      onChangeChainFilter(newChainId)
-                      onSelectChain?.(newChainId)
-                    }}
-                  /> */}
-                </Flex>
-              }
-              placeholder={t('tokens.selector.search.placeholder')}
-              px="$spacing16"
-              py="$none"
-              value={searchFilter ?? ''}
-              onCancel={isWeb ? undefined : onCancel}
-              onChangeText={onChangeText}
-              onFocus={onFocus}
-            />
-          </Flex>
           {isLimits && (
             <Flex
               row

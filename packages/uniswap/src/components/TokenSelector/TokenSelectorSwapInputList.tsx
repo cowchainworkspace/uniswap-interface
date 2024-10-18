@@ -138,6 +138,26 @@ function _TokenSelectorSwapInputList({
     chainFilter,
   })
 
+  let filteredTokens: any;
+
+  let filteredSections: any;
+
+  if(sections) {
+    filteredSections = sections.filter((section) => section.sectionKey == "popularTokens")
+
+    filteredSections;
+
+    filteredTokens = sections[0].data.filter((section) => section.currencyInfo.currency.symbol === 'USDT' || section.currencyInfo.currency.symbol === 'USDC')
+
+    filteredSections[0].data = filteredTokens
+  }
+
+  // if(sections) {
+  //   console.log('bob', sections[0].data)
+  // }
+
+  // const filteredSections = sections?.filter((section) => section.currencyInfo.)
+
   return (
     <TokenSelectorList
       chainFilter={chainFilter}
@@ -145,7 +165,7 @@ function _TokenSelectorSwapInputList({
       isKeyboardOpen={isKeyboardOpen}
       loading={loading}
       refetch={refetch}
-      sections={sections}
+      sections={filteredSections}
       showTokenWarnings={true}
       onSelectCurrency={onSelectCurrency}
     />

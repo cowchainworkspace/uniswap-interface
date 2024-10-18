@@ -25,8 +25,6 @@ export const ChainSelector = ({ hideArrow }: ChainSelectorProps) => {
 
   const filtertedChains = chains.filter((chainId) => chainId == 137)
 
-  console.log('chains', filtertedChains)
-
   const onSelectChain = useCallback(
     async (targetChainId: UniverseChainId | null) => {
       if (multichainUXEnabled || !targetChainId) {
