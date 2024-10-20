@@ -151,13 +151,10 @@ function _TokenSelectorSwapInputList({
     const filteredTokensByChainId = sections[0].data.filter(
       (section) => section.currencyInfo.currency.chainId == 137,
     )
-console.log('filteredTokensByChainId', filteredTokensByChainId)
 
     filteredTokens = filteredTokensByChainId.filter(
       (section) => section.currencyInfo.currency.symbol === 'USDT' || section.currencyInfo.currency.symbol === 'USDC',
     )
-
-    console.log('filteredTokens', filteredTokens)
 
     filteredSections[0].data = filteredTokens
   }

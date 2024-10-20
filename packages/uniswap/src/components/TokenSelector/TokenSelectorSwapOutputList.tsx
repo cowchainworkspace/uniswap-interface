@@ -202,25 +202,25 @@ function _TokenSelectorSwapOutputList({
     input,
   })
 
-  console.log(sections);
-
   let filteredTokens: any
 
   let filteredSections: any
 
   if (sections && sections.length) {
-    filteredSections = sections.filter((section) => section.sectionKey == 'popularTokens')
+    filteredSections = sections.filter((section) => section.sectionKey == 'yourTokens')
 
-    // filteredSections
+    const filteredTokensByChainId = filteredSections[0].data.filter(
+      (section) => section.currencyInfo.currency.chainId == 137,
+    )
 
-    filteredTokens = filteredSections[0].data.filter(
+    filteredTokens = filteredTokensByChainId.filter(
       (section) => section.currencyInfo.currency.symbol === 'USDT' || section.currencyInfo.currency.symbol === 'USDC',
     )
 
     filteredSections[0].data = filteredTokens
   }
 
-  console.log("filtered", filteredSections);
+  console.log('filtered', filteredSections)
 
   return (
     <TokenSelectorList
