@@ -208,7 +208,7 @@ export function gqlTokenToCurrencyInfo(token: NonNullable<NonNullable<TokenQuery
   const { name, chain, address, decimals, symbol, project, feeData, protectionInfo } = token
 
   //@ts-ignore
-  if(address && tokens[address]) {
+  if (address && tokens[address]) {
     //@ts-ignore
     return tokens[address]
   }
