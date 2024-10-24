@@ -10,7 +10,7 @@ export const UNISWAP_API_CACHE_KEY = 'UniswapApi'
 const UniswapApiClient = createApiClient({
   baseUrl: uniswapUrls.apiBaseUrl,
   additionalHeaders: {
-    'x-api-key': config.uniswapApiKey,
+    'x-api-key': 'JoyCGj29tT4pymvhaGciK4r1aIPvqW6W53xT1fwo',
   },
   includeBaseUniswapHeaders: !isInterface,
 })

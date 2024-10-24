@@ -69,7 +69,7 @@ export const TRADING_API_CACHE_KEY = 'TradingApi'
 const TradingApiClient = createApiClient({
   baseUrl: uniswapUrls.tradingApiUrl,
   additionalHeaders: {
-    'x-api-key': config.tradingApiKey,
+    'x-api-key': 'JoyCGj29tT4pymvhaGciK4r1aIPvqW6W53xT1fwo',
   },
 })
 

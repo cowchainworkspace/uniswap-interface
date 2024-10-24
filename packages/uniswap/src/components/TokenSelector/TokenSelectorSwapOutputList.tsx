@@ -202,25 +202,59 @@ function _TokenSelectorSwapOutputList({
     input,
   })
 
-  let filteredTokens: any
-
-  let filteredSections: any
-
-  if (sections && sections.length) {
-    filteredSections = sections.filter((section) => section.sectionKey == 'yourTokens')
-
-    const filteredTokensByChainId = filteredSections[0].data.filter(
-      (section) => section.currencyInfo.currency.chainId == 137,
-    )
-
-    filteredTokens = filteredTokensByChainId.filter(
-      (section) => section.currencyInfo.currency.symbol === 'USDT' || section.currencyInfo.currency.symbol === 'USDC',
-    )
-
-    filteredSections[0].data = filteredTokens
-  }
-
-  console.log('filtered', filteredSections)
+  const tokens = [
+    {
+        "sectionKey": "popularTokens",
+        "data": [
+            {
+                "currencyInfo": {
+                    "currency": {
+                        "chainId": 137,
+                        "decimals": 6,
+                        "symbol": "USDT",
+                        "name": "(PoS) Tether USD",
+                        "isNative": false,
+                        "isToken": true,
+                        "address": "0xc2132d05d31c914a87c6611c10748aeb04b58e8f"
+                    },
+                    "currencyId": "137-0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
+                    "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png",
+                    "safetyInfo": {
+                        "tokenList": "default",
+                        "protectionResult": "BENIGN"
+                    },
+                    "safetyLevel": "VERIFIED",
+                    "isSpam": false
+                },
+                "balanceUSD": null,
+                "quantity": null
+            },
+            {
+                "currencyInfo": {
+                    "currency": {
+                        "chainId": 137,
+                        "decimals": 6,
+                        "symbol": "USDC",
+                        "name": "USD Coin",
+                        "isNative": false,
+                        "isToken": true,
+                        "address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359"
+                    },
+                    "currencyId": "137-0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+                    "logoUrl": "https://coin-images.coingecko.com/coins/images/6319/large/usdc.png?1696506694",
+                    "safetyInfo": {
+                        "tokenList": "default",
+                        "protectionResult": "BENIGN"
+                    },
+                    "safetyLevel": "VERIFIED",
+                    "isSpam": false
+                },
+                "balanceUSD": null,
+                "quantity": null
+            }
+        ]
+    }
+  ]
 
   return (
     <TokenSelectorList
@@ -229,7 +263,8 @@ function _TokenSelectorSwapOutputList({
       isKeyboardOpen={isKeyboardOpen}
       loading={loading}
       refetch={refetch}
-      sections={loading ? undefined : filteredSections}
+      //@ts-ignore
+      sections={loading ? undefined : tokens}
       showTokenWarnings={true}
       onSelectCurrency={onSelectCurrency}
     />

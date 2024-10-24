@@ -182,8 +182,6 @@ export default function Pool() {
     )
   })
 
-  console.log("filtered: ",filteredPositions)
-
   if (!isSupportedChain) {
     return <WrongNetworkCard />
   }

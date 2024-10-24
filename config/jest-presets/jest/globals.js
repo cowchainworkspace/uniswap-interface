@@ -32,7 +32,7 @@ module.exports = {
     SIMPLEHASH_API_URL: 'https://api.simplehash.com',
     STATSIG_PROXY_URL: 'https://api.statsig.com',
     TRADING_API_KEY: 'key',
-    UNISWAP_API_KEY: 'key',
+    UNISWAP_API_KEY: 'JoyCGj29tT4pymvhaGciK4r1aIPvqW6W53xT1fwo',
     WALLETCONNECT_PROJECT_ID: 123,
     FIREBASE_APP_CHECK_DEBUG_TOKEN: 'token',
   },

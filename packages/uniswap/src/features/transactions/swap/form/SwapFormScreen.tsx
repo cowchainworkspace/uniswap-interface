@@ -142,35 +142,35 @@ function SwapFormContent({ wrapCallback }: { wrapCallback?: WrapCallback }): JSX
 
   const { currencyAmounts, currencyBalances, currencies, currencyAmountsUSDValue, wrapType, trade } = derivedSwapInfo
 
-  // When using fiat input mode, this hook updates the token amount based on the latest fiat conversion rate (currently polled every 15s).
-  // In the Extension, the `SwapForm` is not unmounted when the user moves to the `SwapReview` screen,
-  // so we need to skip these updates because we don't want the amounts being reviewed to keep changing.
-  // If we don't skip this, it also causes a cache-miss on `useTrade`, which would trigger a loading spinner because of a missing `trade`.
-  useSyncFiatAndTokenAmountUpdater({ skip: screen !== TransactionScreen.Form })
+// When using fiat input mode, this hook updates the token amount based on the latest fiat conversion rate (currently polled every 15s).
+// In the Extension, the `SwapForm` is not unmounted when the user moves to the `SwapReview` screen,
+// so we need to skip these updates because we don't want the amounts being reviewed to keep changing.
+// If we don't skip this, it also causes a cache-miss on `useTrade`, which would trigger a loading spinner because of a missing `trade`.
+// useSyncFiatAndTokenAmountUpdater({ skip: screen !== TransactionScreen.Form })
 
-  useSwapNetworkNotification({
-    inputChainId: input?.chainId,
-    outputChainId: output?.chainId,
-  })
+// useSwapNetworkNotification({
+//   inputChainId: input?.chainId,
+//   outputChainId: output?.chainId,
+// })
 
-  usePrefetchSwappableTokens(input)
+// usePrefetchSwappableTokens(input)
 
-  const onRestorePress = (): void => {
-    if (!openWalletRestoreModal) {
-      throw new Error('Invalid call to `onRestorePress` with missing `openWalletRestoreModal`')
-    }
-    openWalletRestoreModal()
+const onRestorePress = (): void => {
+  if (!openWalletRestoreModal) {
+    throw new Error('Invalid call to `onRestorePress` with missing `openWalletRestoreModal`')
   }
+  openWalletRestoreModal()
+}
 
-  const { outputTokenHasBuyTax, exactOutputWillFail, exactOutputWouldFailIfCurrenciesSwitched } =
-    useExactOutputWillFail({ currencies })
+const { outputTokenHasBuyTax, exactOutputWillFail, exactOutputWouldFailIfCurrenciesSwitched } =
+useExactOutputWillFail({ currencies })
 
   useEffect(() => {
     if (exactOutputWillFail) {
-      updateSwapForm({
-        exactCurrencyField: CurrencyField.INPUT,
-        focusOnCurrencyField: CurrencyField.INPUT,
-      })
+      // updateSwapForm({
+      //   exactCurrencyField: CurrencyField.INPUT,
+      //   focusOnCurrencyField: CurrencyField.INPUT,
+      // })
     }
     // Since we only want to run this on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -201,7 +201,6 @@ function SwapFormContent({ wrapCallback }: { wrapCallback?: WrapCallback }): JSX
     }),
     [inputSelectionRef, outputSelectionRef],
   )
-
   const resetSelection = useCallback(
     ({ start, end, currencyField }: { start: number; end?: number; currencyField?: CurrencyField }) => {
       // Update refs first to have the latest selection state available in the DecimalPadInput
@@ -527,6 +526,7 @@ function SwapFormContent({ wrapCallback }: { wrapCallback?: WrapCallback }): JSX
 
   const showFooter = !hideFooter && exactAmountToken && input && output
 
+
   return (
     <Flex grow gap="$spacing8" justifyContent="space-between">
       <Flex animation="quick" enterStyle={{ opacity: 0 }} exitStyle={{ opacity: 0 }} gap="$spacing2" grow={isExtension}>
@@ -556,6 +556,7 @@ function SwapFormContent({ wrapCallback }: { wrapCallback?: WrapCallback }): JSX
               showSoftInputOnFocus={false}
               usdValue={currencyAmountsUSDValue[CurrencyField.INPUT]}
               value={exactFieldIsInput ? exactValue : formattedDerivedValue}
+
               valueIsIndicative={!exactFieldIsInput && trade.indicativeTrade && !trade.trade}
               onPressIn={onFocusInput}
               onSelectionChange={onInputSelectionChange}

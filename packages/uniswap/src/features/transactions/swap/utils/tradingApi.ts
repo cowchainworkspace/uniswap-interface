@@ -360,12 +360,15 @@ export function validateTrade({
   exactCurrencyField: CurrencyField
 }): Trade<Currency, Currency, TradeType> | null {
   // skip if no valid trade object
-  if (!trade || !currencyIn || !currencyOut || !exactAmount) {
+  //@ts-ignore
+  if (!trade || !currencyIn || !currencyOut || !exactAmount || !currencyIn?.address || !trade?.inputAmount.currency.wrapped?.address || !currencyOut?.address || !trade.outputAmount.currency.wrapped?.address) {
     return null
   }
 
-  const inputsMatch = areAddressesEqual(currencyIn.wrapped.address, trade?.inputAmount.currency.wrapped.address)
-  const outputsMatch = areAddressesEqual(currencyOut.wrapped.address, trade.outputAmount.currency.wrapped.address)
+  //@ts-ignore
+  const inputsMatch = areAddressesEqual(currencyIn.address.toLowerCase(), trade?.inputAmount.currency.wrapped.address.toLowerCase())
+  //@ts-ignore
+  const outputsMatch = areAddressesEqual(currencyOut.address.toLowerCase(), trade.outputAmount.currency.wrapped.address.toLowerCase())
 
   const tokenAddressesMatch = inputsMatch && outputsMatch
   // TODO(WEB-5132): Add validation checking that exact amount from response matches exact amount from user input

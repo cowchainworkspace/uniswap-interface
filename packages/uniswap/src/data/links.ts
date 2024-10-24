@@ -16,8 +16,7 @@ export const getRestLink = (): ApolloLink => {
     uri: restUri,
     headers: {
       'Content-Type': 'application/json',
-      'X-API-KEY': config.uniswapApiKey,
-      'x-request-source': REQUEST_SOURCE,
+'X-API-KEY': 'JoyCGj29tT4pymvhaGciK4r1aIPvqW6W53xT1fwo',      'x-request-source': REQUEST_SOURCE,
       'x-app-version': getVersionHeader(),
       Origin: uniswapUrls.requestOriginUrl,
     },
@@ -34,26 +33,26 @@ export const getCustomGraphqlHttpLink = (endpoint: CustomEndpoint): ApolloLink =
     uri: endpoint.url,
     headers: {
       'Content-Type': 'application/json',
-      'X-API-KEY': endpoint.key,
-      'x-request-source': REQUEST_SOURCE,
+'X-API-KEY': 'JoyCGj29tT4pymvhaGciK4r1aIPvqW6W53xT1fwo',      'x-request-source': REQUEST_SOURCE,
       'x-app-version': getVersionHeader(),
       // TODO: [MOB-3883] remove once API gateway supports mobile origin URL
       Origin: uniswapUrls.apiOrigin,
     },
   })
 
-export const getGraphqlHttpLink = (): ApolloLink =>
-  createHttpLink({
+export const getGraphqlHttpLink = (): ApolloLink =>{
+  return createHttpLink({
     uri: uniswapUrls.graphQLUrl,
     headers: {
       'Content-Type': 'application/json',
-      'X-API-KEY': config.uniswapApiKey,
+      'X-API-KEY': 'JoyCGj29tT4pymvhaGciK4r1aIPvqW6W53xT1fwo',
       'x-request-source': REQUEST_SOURCE,
       'x-app-version': getVersionHeader(),
       // TODO: [MOB-3883] remove once API gateway supports mobile origin URL
       Origin: uniswapUrls.apiOrigin,
     },
   })
+}
 
 // Samples error reports to reduce load on backend
 // Recurring errors that we must fix should have enough occurrences that we detect them still

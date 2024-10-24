@@ -82,7 +82,7 @@ export function TokenSelectorContent({
   onSelectCurrency,
 }: Omit<TokenSelectorProps, 'isModalOpen'>): JSX.Element {
   const { onChangeChainFilter, onChangeText, searchFilter, chainFilter, parsedChainFilter, parsedSearchFilter } =
-    useFilterCallbacks(chainId ?? null, flow)
+    useFilterCallbacks(137, flow)
   const debouncedSearchFilter = useDebounce(searchFilter)
   const debouncedParsedSearchFilter = useDebounce(parsedSearchFilter)
   const scrollbarStyles = useScrollbarStyles()
@@ -127,29 +127,10 @@ export function TokenSelectorContent({
 
   const onSelectCurrencyCallback = useCallback(
     (currencyInfo: CurrencyInfo, section: TokenSection, index: number): void => {
-      const searchContext: SearchContext = {
-        category: section.sectionKey,
-        query: debouncedSearchFilter ?? undefined,
-        position: index + 1,
-        suggestionCount: section.data.length,
-      }
 
       // log event that a currency was selected
       const tokenOption = section.data[index]
       const balanceUSD = Array.isArray(tokenOption) ? undefined : tokenOption?.balanceUSD ?? undefined
-      sendAnalyticsEvent(UniswapEventName.TokenSelected, {
-        name: currencyInfo.currency.name,
-        address: currencyAddress(currencyInfo.currency),
-        chain: currencyInfo.currency.chainId,
-        modal: flowToModalName(flow),
-        page,
-        field: currencyField,
-        token_balance_usd: balanceUSD,
-        category: searchContext.category,
-        position: searchContext.position,
-        suggestion_count: searchContext.suggestionCount,
-        query: searchContext.query,
-      })
 
       const isBridgePair = section.sectionKey === TokenOptionSection.BridgingTokens
       onSelectCurrency(currencyInfo.currency, currencyField, isBridgePair)

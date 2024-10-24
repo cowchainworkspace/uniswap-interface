@@ -157,24 +157,24 @@ function _TokenSelectorList({
     [],
   )
 
-  if (hasError) {
-    return (
-      <>
-        <Flex grow justifyContent="center">
-          <BaseCard.ErrorState
-            retryButtonLabel={t('common.button.retry')}
-            title={errorText ?? t('tokens.selector.error.load')}
-            onRetry={refetch}
-          />
-        </Flex>
-        {/*
-          This is needed to position error message roughly in the center of
-          the sheet initially when modal is opened to 65% only
-        */}
-        <Flex grow />
-      </>
-    )
-  }
+  // if (hasError) {
+  //   return (
+  //     <>
+  //       <Flex grow justifyContent="center">
+  //         <BaseCard.ErrorState
+  //           retryButtonLabel={t('common.button.retry')}
+  //           title={errorText ?? t('tokens.selector.error.load')}
+  //           onRetry={refetch}
+  //         />
+  //       </Flex>
+  //       {/*
+  //         This is needed to position error message roughly in the center of
+  //         the sheet initially when modal is opened to 65% only
+  //       */}
+  //       <Flex grow />
+  //     </>
+  //   )
+  // }
 
   return (
     <AnimateTransition animationType="fade" currentIndex={(!sections || !sections.length) && loading ? 0 : 1}>
