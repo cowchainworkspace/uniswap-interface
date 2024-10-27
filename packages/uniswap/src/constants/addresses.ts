@@ -30,3 +30,4 @@ export function getNativeAddress(chainId: UniverseChainId): string {
 export function getWrappedNativeAddress(chainId: UniverseChainId): string {
   return UNIVERSE_CHAIN_INFO[chainId].wrappedNativeCurrency.address
 }
+export const allowedList = ['USDT', 'USDC', 'DAI', 'WBTC', 'POL']

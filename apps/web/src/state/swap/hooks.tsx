@@ -49,7 +49,8 @@ export function useSwapActionHandlers(): {
         field === CurrencyField.INPUT ? ['inputCurrency', 'outputCurrency'] : ['outputCurrency', 'inputCurrency']
       const otherCurrency = currencyState[otherCurrencyKey]
       // the case where we have to swap the order
-      if (otherCurrency && currency?.equals(otherCurrency)) {
+      //@ts-ignore
+      if (otherCurrency && currency?.chainId === otherCurrency.chainId && currency.address.toLowerCase() === otherCurrency.address.toLowerCase()) {
         setCurrencyState({
           [currentCurrencyKey]: currency,
           [otherCurrencyKey]: currencyState[currentCurrencyKey],
