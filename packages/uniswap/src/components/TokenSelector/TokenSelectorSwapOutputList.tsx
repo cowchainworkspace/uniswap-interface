@@ -202,7 +202,7 @@ function _TokenSelectorSwapOutputList({
     chainFilter,
     input,
   })
-  // console.log({ sections })
+
   const filtered = sections?.map((section) => {
     const filteredTokens = section.data.map((currency) => {
       if (!Array.isArray(currency)) {
@@ -215,128 +215,6 @@ function _TokenSelectorSwapOutputList({
     })
     return { ...section, data: filteredTokens.filter(Boolean) }
   })
-  // const tokens = [
-  //   {
-  //     sectionKey: 'popularTokens',
-  //     data: [
-  //       {
-  //         currencyInfo: {
-  //           currency: {
-  //             chainId: 137,
-  //             decimals: 18,
-  //             name: 'Polygon POL',
-  //             symbol: 'POL',
-  //             isNative: true,
-  //             isToken: false,
-  //             address: '0x0000000000000000000000000000000000001010',
-  //           },
-  //           currencyId: '137-0x0000000000000000000000000000000000001010',
-  //           logoUrl: 'https://coin-images.coingecko.com/coins/images/32440/large/polygon.png?1698233684',
-  //           safetyLevel: 'VERIFIED',
-  //           safetyInfo: {
-  //             tokenList: 'default',
-  //             protectionResult: 'UNKNOWN',
-  //           },
-  //         },
-  //         balanceUSD: null,
-  //         quantity: null,
-  //       },
-  //       {
-  //         currencyInfo: {
-  //           currency: {
-  //             chainId: 137,
-  //             decimals: 18,
-  //             symbol: 'DAI',
-  //             name: '(PoS) Dai Stablecoin',
-  //             isNative: false,
-  //             isToken: true,
-  //             address: '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063',
-  //           },
-  //           currencyId: '137-0x8f3cf7ad23cd3cadbd9735aff958023239c6a063',
-  //           logoUrl: 'https://coin-images.coingecko.com/coins/images/39787/large/dai.png?1724110678',
-  //           safetyInfo: {
-  //             tokenList: 'default',
-  //             protectionResult: 'BENIGN',
-  //           },
-  //           safetyLevel: 'VERIFIED',
-  //           isSpam: false,
-  //         },
-  //         balanceUSD: null,
-  //         quantity: null,
-  //       },
-  //       {
-  //         currencyInfo: {
-  //           currency: {
-  //             chainId: 137,
-  //             decimals: 6,
-  //             symbol: 'USDT',
-  //             name: '(PoS) Tether USD',
-  //             isNative: false,
-  //             isToken: true,
-  //             address: '0xc2132d05d31c914a87c6611c10748aeb04b58e8f',
-  //           },
-  //           currencyId: '137-0xc2132d05d31c914a87c6611c10748aeb04b58e8f',
-  //           logoUrl:
-  //             'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png',
-  //           safetyInfo: {
-  //             tokenList: 'default',
-  //             protectionResult: 'BENIGN',
-  //           },
-  //           safetyLevel: 'VERIFIED',
-  //           isSpam: false,
-  //         },
-  //         balanceUSD: null,
-  //         quantity: null,
-  //       },
-  //       {
-  //         currencyInfo: {
-  //           currency: {
-  //             chainId: 137,
-  //             decimals: 8,
-  //             symbol: 'WBTC',
-  //             name: '(PoS) Wrapped BTC',
-  //             isNative: false,
-  //             isToken: true,
-  //             address: '0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6',
-  //           },
-  //           currencyId: '137-0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6',
-  //           logoUrl: 'https://coin-images.coingecko.com/coins/images/39530/large/wbtc.png?1722809402',
-  //           safetyInfo: {
-  //             tokenList: 'default',
-  //             protectionResult: 'BENIGN',
-  //           },
-  //           safetyLevel: 'VERIFIED',
-  //           isSpam: false,
-  //         },
-  //         balanceUSD: null,
-  //         quantity: null,
-  //       },
-  //       {
-  //         currencyInfo: {
-  //           currency: {
-  //             chainId: 137,
-  //             decimals: 6,
-  //             symbol: 'USDC',
-  //             name: 'USD Coin',
-  //             isNative: false,
-  //             isToken: true,
-  //             address: '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359',
-  //           },
-  //           currencyId: '137-0x3c499c542cef5e3811e1192ce70d8cc03d5c3359',
-  //           logoUrl: 'https://coin-images.coingecko.com/coins/images/6319/large/usdc.png?1696506694',
-  //           safetyInfo: {
-  //             tokenList: 'default',
-  //             protectionResult: 'BENIGN',
-  //           },
-  //           safetyLevel: 'VERIFIED',
-  //           isSpam: false,
-  //         },
-  //         balanceUSD: null,
-  //         quantity: null,
-  //       },
-  //     ],
-  //   },
-  // ]
 
   return (
     <TokenSelectorList

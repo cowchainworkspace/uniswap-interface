@@ -130,19 +130,15 @@ function _TokenSelectorSwapInputList({
   onSelectCurrency: OnSelectCurrency
 }): JSX.Element {
   const {
-    loading,
     data: sections,
+    loading,
     error,
     refetch,
   } = useTokenSectionsForSwapInput({
     activeAccountAddress,
     chainFilter,
   })
-  // const filteredTokens = sections?.[0]?.data.filter((token) => allowedList.includes(token.currencyInfo.currency.symbol))
-  // console.log({ filteredTokens })
-  // if (filteredTokens?.length) {
-  //   sections[0].data = filteredTokens
-  // }
+  // console.log(sections)
   const filtered = sections?.map((section) => {
     const filteredTokens = section.data.map((currency) => {
       if (!Array.isArray(currency)) {

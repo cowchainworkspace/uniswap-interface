@@ -110,9 +110,9 @@ export function sanitizeAddressText(address?: string): Maybe<string> {
 }
 
 export function areAddressesEqual(a1: Maybe<Address>, a2: Maybe<Address>): boolean {
-  // const validA1 = getValidAddress(a1)
-  // const validA2 = getValidAddress(a2)
-  return a1 !== null && a2 !== null && a1 === a2
+  const validA1 = getValidAddress(a1)
+  const validA2 = getValidAddress(a2)
+  return validA1 !== null && validA2 !== null && validA1 === validA2
 }
 
 export function ensureLeading0x(input: Address): Address {

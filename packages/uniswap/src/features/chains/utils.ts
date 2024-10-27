@@ -275,7 +275,7 @@ export function getEnabledChains({
   return {
     chains: supportedChainIds,
     gqlChains: GQL_MAINNET_CHAINS_MUTABLE,
-    defaultChainId: UniverseChainId.Mainnet as UniverseChainId,
+    defaultChainId: UniverseChainId.Polygon as UniverseChainId,
     isTestnetModeEnabled,
   }
 }
