@@ -1,4 +1,4 @@
-import 'zone.js'
+
 
 import { SpanStatusType } from '@sentry/core'
 import * as Sentry from '@sentry/react'
@@ -6,7 +6,7 @@ import { Span, TransactionContext } from '@sentry/types'
 import { TraceContext } from 'tracing/types'
 
 // @ts-ignore Avoid logging unhandled errors - they're already logged by the browser and Sentry.
-Zone[Zone.__symbol__('ignoreConsoleErrorUncaughtError')] = true
+// Zone[Zone.__symbol__('ignoreConsoleErrorUncaughtError')] = true
 
 declare global {
   interface Zone {
@@ -83,9 +83,7 @@ async function sentryAdaptor<T>(context: TraceContext, callback: TraceCallback<T
       const name = span.description ?? span.spanId // human-readable
       // Using trace-scoped zones allows child traces from async sources - like those defined in ./request.ts - to be
       // ascribed to the correct parent.
-      return await Zone.current
-        .fork({ name, properties: { trace: callbackContext.child } })
-        .run(() => callback(callbackContext))
+      return await  callback(callbackContext)
     } else {
       return await callback(callbackContext)
     }
@@ -112,20 +110,17 @@ async function sentryAdaptor<T>(context: TraceContext, callback: TraceCallback<T
 }
 
 export function isTracing(): boolean {
-  const parentTrace = Zone.current.get('trace')
-  return !!parentTrace
+  // const parentTrace = Zone.current.get('trace')
+  return false
 }
 
 /** Traces the callback. */
 export async function trace<T>(context: TraceContext, callback: TraceCallback<T>): Promise<T> {
-  const parentTrace = Zone.current.get('trace')
-  if (parentTrace) {
-    return parentTrace?.(context, callback)
-  } else {
+
     const { name, op, tags, data } = context
     const sentryContext: TransactionContext = { name, description: name, op, tags, data }
     // We use inactive spans so that we can measure two distinct flows at once, without mingling them.
     const span = Sentry.startInactiveSpan(sentryContext)
     return sentryAdaptor(context, callback, span)
-  }
+
 }
