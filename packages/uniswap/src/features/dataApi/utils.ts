@@ -300,7 +300,6 @@ export function gqlTokenToCurrencyInfo(token: NonNullable<NonNullable<TokenQuery
     // for a token, in which case the user probably doesn't expect the token to be spam
     isSpam: project?.isSpam ?? false,
   }
-  console.log({ [address?.toLowerCase()]: currencyInfo })
   return currencyInfo
 }
 

@@ -9,7 +9,7 @@ function clientToSigner(client?: Client<Transport, UniverseChainInfo, Account>) 
     return undefined
   }
   const { chain, transport, account } = client
-  const ensAddress = chain.contracts?.ensRegistry?.address
+  const ensAddress = chain?.contracts?.ensRegistry?.address
   const network = {
     chainId: chain.id,
     name: chain.name,
